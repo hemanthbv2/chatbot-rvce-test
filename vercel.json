@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "builds": [
+    {
+      "src": "server/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/server/server.js"
+    },
+    { "src": "/dashboard/interactions", "dest": "/dashboard/interactions.html" },
+    { "src": "/dashboard/sessions", "dest": "/dashboard/sessions.html" },
+    { "src": "/dashboard/analytics", "dest": "/dashboard/analytics.html" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
